@@ -58,6 +58,7 @@
             </div>
             @endif
         </div>
+        @if (!Auth::guest())
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">Profile</div>
@@ -70,6 +71,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 </div>
 @endsection

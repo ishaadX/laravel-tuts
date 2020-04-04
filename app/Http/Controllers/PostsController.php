@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Posts;
+use App\User;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Intervention\Image\ImageManager;
