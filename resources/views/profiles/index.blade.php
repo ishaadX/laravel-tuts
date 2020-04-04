@@ -34,7 +34,7 @@
                 <div class="card-header">Profile</div>
                 <div class="card-body">
                     <ul>
-                        <li><a href="/user-profile/{{auth()->user()->id}}">Visit Profile</a></li>
+                        <li><a href="/user-profile/{{auth()->user()->id}}">My Profile</a></li>
                         <li><a href="/user-profile/{{auth()->user()->id}}/edit">Edit Profile</a></li>
                         <li><a href="/post/create">Add new post</a></li>
                     </ul>
