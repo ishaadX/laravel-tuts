@@ -29,18 +29,21 @@
             </div>
             @endif
         </div>
+        @if (!Auth::guest())
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">Profile</div>
                 <div class="card-body">
                     <ul>
-                        <li><a href="/user-profile/{{auth()->user()->id}}">My Profile</a></li>
-                        <li><a href="/user-profile/{{auth()->user()->id}}/edit">Edit Profile</a></li>
+                        <li><a href="/user-profile/{{$user->id}}">My Profile</a></li>
+                        <li><a href="/user-profile/{{$user->id}}/edit">Edit Profile</a></li>
                         <li><a href="/post/create">Add new post</a></li>
                     </ul>
                 </div>
             </div>
         </div>
+        @endif
+
     </div>
 </div>
 @endsection

@@ -24,6 +24,7 @@ class ProfilesController extends Controller
     public function edit($user_id)
     {
         $user = User::findOrFail($user_id);
+        $this->authorize('update', $user->profile);
         return view('profiles.edit', [
             'user' => $user
         ]);
@@ -36,8 +37,11 @@ class ProfilesController extends Controller
             'web_link' => ['required', 'url'],
         ]);
         $user_id = auth()->user()->id;
-        $user = Profile::find($user_id);
-        if ($user !== null) {
+        $user_profile = Profile::find($user_id);
+        $user = User::findOrFail($user_id);
+        $this->authorize('update', $user->profile);
+
+        if ($user_profile !== null) {
             auth()->user()->profile()->update([
                 'description' => $update_profile['description'],
                 'web_link' => $update_profile['web_link'],
