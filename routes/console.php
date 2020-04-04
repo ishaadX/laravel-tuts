@@ -29,4 +29,4 @@ Artisan::command('remove:controller {name : Name of the controller}', function (
     } else {
         $this->error('Cannot delete ' . $name . ', file not found.');
     }
-})->describe('Remove specific controller');
+})->describe('Remove any specific controller');

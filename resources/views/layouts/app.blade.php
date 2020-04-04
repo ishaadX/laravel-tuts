@@ -28,6 +28,14 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+                <?php
+                $user_id = !empty(auth()->user()->id) ? auth()->user()->id : '';
+                ?>
+                @if ($user_id ?? '')
+                <a class="navbar-brand" href="/user-profile/{{$user_id}}">
+                    My Profile
+                </a>
+                @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

@@ -26,12 +26,4 @@ class HomeController extends Controller
     {
         return view('home');
     }
-
-    public function withUser($user)
-    {
-        $user = User::find($user);
-        return view('home', [
-            'user' => $user
-        ]);
-    }
 }
