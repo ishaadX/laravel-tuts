@@ -1,3 +1,6 @@
+<?php
+$current_user_id = auth()->user()->id;
+?>
 @extends('layouts.app')
 
 @section('content')
@@ -35,8 +38,8 @@
                 <div class="card-header">Profile</div>
                 <div class="card-body">
                     <ul>
-                        <li><a href="/user-profile/{{$user->id}}">My Profile</a></li>
-                        <li><a href="/user-profile/{{$user->id}}/edit">Edit Profile</a></li>
+                        <li><a href="/user-profile/{{$current_user_id}}">My Profile</a></li>
+                        <li><a href="/user-profile/{{$current_user_id}}/edit">Edit Profile</a></li>
                         <li><a href="/post/create">Add new post</a></li>
                     </ul>
                 </div>

@@ -23,11 +23,16 @@ class ProfilesController extends Controller
 
     public function edit($user_id)
     {
-        $user = User::findOrFail($user_id);
-        $this->authorize('update', $user->profile);
-        return view('profiles.edit', [
-            'user' => $user
-        ]);
+        $current_user_id = auth()->user()->id;
+        $requested_user = User::findOrFail($user_id);
+        if ($current_user_id == $requested_user->id) {
+            return view('profiles.edit', [
+                'user' => $requested_user
+            ]);
+        } else {
+            $user = User::findOrFail($current_user_id);
+            $this->authorize('update', $user->profile);
+        }
     }
 
     public function update(Request $request)
