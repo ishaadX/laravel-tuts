@@ -3,7 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\User;
-use App\Posts;
+// use App\Posts;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -29,10 +29,10 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(Posts::class, function (Faker $faker) {
-    return [
-        'post_title' => $faker->sentence,
-        'post_content' => $faker->paragraph,
-        'post_thumbnail' => $faker->imageUrl,
-    ];
-});
+// $factory->define(Posts::class, function (Faker $faker) {
+//     return [
+//         'post_title' => $faker->sentence,
+//         'post_content' => $faker->paragraph,
+//         'post_thumbnail' => $faker->imageUrl,
+//     ];
+// });

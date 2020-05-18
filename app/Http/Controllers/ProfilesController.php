@@ -15,22 +15,30 @@ class ProfilesController extends Controller
      */
     public function index($user_id)
     {
-        $user = User::findOrFail($user_id);
+        $user = User::with('posts')->findOrFail($user_id);
         return view('profiles.index', [
             'user' => $user
+        ]);
+    }
+
+    public function profileView($user_id)
+    {
+        $user_profile = Profile::with('user')->findOrFail($user_id)->toArray();
+        return view('profiles.dashboard', [
+            'user' => $user_profile
         ]);
     }
 
     public function edit($user_id)
     {
         $current_user_id = auth()->user()->id;
-        $requested_user = User::findOrFail($user_id);
+        $requested_user = $this->findingUser($user_id);
         if ($current_user_id == $requested_user->id) {
             return view('profiles.edit', [
                 'user' => $requested_user
             ]);
         } else {
-            $user = User::findOrFail($current_user_id);
+            $user = $this->findingUser($current_user_id);
             $this->authorize('update', $user->profile);
         }
     }
@@ -43,21 +51,25 @@ class ProfilesController extends Controller
         ]);
         $user_id = auth()->user()->id;
         $user_profile = Profile::find($user_id);
-        $user = User::findOrFail($user_id);
-        $this->authorize('update', $user->profile);
+        $user = $this->findingUser($user_id);
 
         if ($user_profile !== null) {
             auth()->user()->profile()->update([
                 'description' => $update_profile['description'],
                 'web_link' => $update_profile['web_link'],
             ]);
-            return redirect('/user-profile/' . auth()->user()->id);
         } else {
             auth()->user()->profile()->create([
                 'description' => $update_profile['description'],
                 'web_link' => $update_profile['web_link'],
             ]);
-            return redirect('/user-profile/' . auth()->user()->id);
         }
+        $redirect_params = [auth()->user()->id];
+        return redirect()->route('profile.dashboard', $redirect_params);
+    }
+
+    public function findingUser($userID)
+    {
+        return User::findOrFail($userID);
     }
 }

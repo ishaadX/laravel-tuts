@@ -32,6 +32,7 @@ Route::get('/home', 'HomeController@index')->name('home');
  * 
  */
 
+Route::get('/profile/{user_id}', 'ProfilesController@profileView')->name('profile.dashboard');
 Route::get('/user-profile/{user_id}', 'ProfilesController@index')->name('profile.show');
 Route::get('/user-profile/{user_id}/edit', 'ProfilesController@edit')->name('profile.edit');
 Route::patch('/user-profile/{user_id}', 'ProfilesController@update')->name('profile.update');

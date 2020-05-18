@@ -33,7 +33,7 @@
                 ?>
                 @if ($user_id ?? '')
                 <a class="navbar-brand" href="/user-profile/{{$user_id}}">
-                    My Profile
+                    My Posts
                 </a>
                 @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

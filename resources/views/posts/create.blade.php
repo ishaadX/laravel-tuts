@@ -42,6 +42,22 @@
                 </div>
 
                 <div class="form-group row">
+                    <label for="post_tags" class="col-md-3 col-form-label text-md-right">{{ __('Choose Tags') }}</label>
+
+                    <div class="col-md-9">
+                        <select name="post_tags[]" multiple>
+                            @foreach($tags as $tag)
+                            <option value={{ $tag->id}}>{{ $tag->name}}</option>
+                            @endforeach
+                        </select>
+
+                        @error('post_tags')
+                        <strong>{{ $message }}</strong>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="form-group row">
                     <label for="post_thumbnail" class="col-md-3 col-form-label text-md-right">{{ __('Post Thumbnail') }}</label>
 
                     <div class="col-md-9">

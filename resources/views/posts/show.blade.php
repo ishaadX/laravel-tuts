@@ -30,9 +30,9 @@ if ($current_user_id !== $current_post_user_id) {
         </div>
         @if ($display_delete != false)
         <div class="col-md-4">
-            <form method="POST" action="{{ route('post.destroy', [$post->id]) }}">
-                {{ csrf_field() }}
+            <form method="post" action="{{ route('post.destroy', [$post->id]) }}">
                 {{ method_field('DELETE') }}
+                {!! csrf_field() !!}
                 <button type="submit">Delete</button>
             </form>
         </div>

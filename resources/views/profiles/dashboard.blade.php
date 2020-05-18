@@ -1,5 +1,9 @@
 <?php
 $current_user_id = auth()->user()->id;
+$visited_user = !empty($user) ? $user : [];
+$visited_user_name = !empty($visited_user) ? $visited_user['user']['username'] : '';
+$user_bio = !empty($visited_user) ? $visited_user['description'] : '';
+$user_web_link = !empty($visited_user) ? $visited_user['web_link'] : '';
 ?>
 @extends('layouts.app')
 
@@ -7,27 +11,14 @@ $current_user_id = auth()->user()->id;
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            @if ($user ?? '')
+            @if ($visited_user ?? '')
             <div class="card">
                 <div class="card-header">
-                    Profile of {{ $user->username }}
+                    Profile of {{ $visited_user_name }}
                 </div>
                 <div class="card-body">
-                    @foreach($user->posts as $post)
-                    <div class="post-area">
-                        <div class="post-title-area">
-                            <a href="/post/{{$post->id}}">
-                                {{ $post->post_title }}
-                            </a>
-                            <span> Written by : {{$post->user->username}} </span>
-                        </div>
-                        <div class="post-content-area">
-                            <img src="/storage/{{ $post->post_thumbnail }}" alt="img">
-                            {{ $post->post_content }}
-                        </div>
-                    </div>
-                    <hr />
-                    @endforeach
+                    <p>{{ $user_bio }}</p>
+                    <p>{{ $user_web_link }}</p>
                 </div>
             </div>
             @endif
