@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Post\PostEloquent as PostEloquent;
 use App\Posts;
 use App\Tags;
 use App\User;
@@ -17,15 +18,33 @@ class PostsController extends Controller
      *
      * @return void
      */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+
+    private $postObject;
+
+    public function __construct(PostEloquent $postObject)
+    {
+        $this->postObject = $postObject;
+        // $this->middleware('auth');
+    }
 
 
-    /** 
-     * Create post function
+    /**
      * 
+     * Get all posts from db
+     *
+     */
+
+    public function getAllPost()
+    {
+        $posts = $this->postObject->getAll();
+        dump($posts);
+        // return view('cars.index')->with('cars', $cars);
+    }
+
+
+    /**
+     * Create post function
+     *
      */
     public function create()
     {
@@ -35,9 +54,9 @@ class PostsController extends Controller
     }
 
 
-    /** 
+    /**
      * Store post function
-     * 
+     *
      */
     public function store(Request $request)
     {
@@ -56,9 +75,9 @@ class PostsController extends Controller
         return redirect('/user-profile/' . auth()->user()->id);
     }
 
-    /** 
+    /**
      * Display post function
-     * 
+     *
      */
     public function show($post)
     {

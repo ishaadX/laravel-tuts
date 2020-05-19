@@ -1,5 +1,7 @@
 <?php
 
+use App\Mail\PostCreated;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +27,12 @@ Auth::routes();
  * 
  */
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/repo-pattern', 'PostsController@getAllPost')->name('getposts');
+
+// Route::get('/emailtest', function () {
+//     Mail::to('demo@demo.com')->send(new PostCreated());
+//     return new PostCreated();
+// });
 
 /**
  * 
